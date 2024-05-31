@@ -87,12 +87,12 @@ C=np.zeros(29)
 
 C=np.array([0, C_layer_out, C_layer_in, 0, 0, 0, Glass, C_layer_out, 0, C_layer_out, C_layer_in, 0, C_layer_out, C_layer_in, 0, 0, C_layer_in, C_layer_in, 0, C_layer_in, C_layer_out, 0, Glass, 0, C_layer_in, C_layer_out, Air, Air])
 
-#Matrix B 
+#Matrix b 
 
-B=np.zeros(40)
-B[5], B[7], B[21], B[32], B[34] = To, To, To, To, To
-B[16], B[17], B[38] = Ti, Ti, Ti
-B[39] = Th
+b=np.zeros(40)
+b[5], b[7], b[21], b[32], b[34] = To, To, To, To, To
+b[16], b[17], b[38] = Ti, Ti, Ti
+b[39] = Th
 
 #Matrix f 
 
@@ -127,7 +127,3 @@ y[27]=y[28]=1
 
 # Flow-rate vector in steady-state
 q = G @ (-A @ θ + b)
-
-#resolution
-
-
