@@ -1,7 +1,5 @@
 #Bibliothèques:
 import numpy as np
-import scipy
-from scipy import linalg
 
 #Variables :
 nq, n0 = 40, 29 # number of flow-rates branches and of temperaure nodes
@@ -117,7 +115,6 @@ f[28]=L2*L6*E
 f[4]=H*Lw1*alphaw*E
 f[23]=H*Lw2*alphaw*E
 
-f.T
 
 #Matrix y
 
@@ -125,7 +122,11 @@ y=np.zeros(29)
 y[27]=y[28]=1
 
 
+# Temperature vector in steady-state
+θ = np.linalg.inv(A.T @ G @ A) @ (A.T @ G @ b + f)
 
+# Flow-rate vector in steady-state
+q = G @ (-A @ θ + b)
 
 #resolution
 
