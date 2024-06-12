@@ -107,7 +107,16 @@ q = G @ (-A @ θ + b)
 print(f"The temperature in the room 1 is : θ6 = {θ[6]:.2f} °C, and the temperature in the room 2 is :θ7 = {θ[7]:.2f} °C")
 
 # Dynamic model
-[As, Bs, Cs, Ds, us]=dm4bem.tc2ss(A,G,C,b,f,y)
+
+P=np.zeros([nθ, nθ])
+P[8][0]=P[0][8]=P[11][1]=P[1][11]=P[13][2]=P[2][13]=P[16][3]=P[3][16]=1  #This matrix is a change-of-base matrix used to rewrite the various matrices in our system, with the first indices corresponding to temperature nodes without capacities, and the rest afterwards. This transformation is carried out in such a way as to be able to use the tc2ss function as mentioned in the "From differential-algebraic equations to state-space representation" part of the course.
+
+A_bis=A@P
+C_bis=P@C
+f_bis=P@f
+y_bis=P*y
+
+[As, Bs, Cs, Ds, us]=dm4bem.tc2ss(A_bis,G,C_bis,b,f_bis,y_bis)  #For a reason we ignore, there is an error during the call of this function
 dt_max = min(-2./eig(As))
 dt=0.99*dt_max
 time_simulation=7*24*3600
