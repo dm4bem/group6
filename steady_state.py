@@ -114,7 +114,7 @@ P[8][0]=P[0][8]=P[11][1]=P[1][11]=P[13][2]=P[2][13]=P[16][3]=P[3][16]=1  #This m
 A_bis=A@P
 C_bis=P@C
 f_bis=P@f
-y_bis=P*y
+y_bis=P@y
 
 [As, Bs, Cs, Ds, us]=dm4bem.tc2ss(A_bis,G,C_bis,b,f_bis,y_bis)  #For a reason we ignore, there is an error during the call of this function
 dt_max = min(-2./eig(As))
