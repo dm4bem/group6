@@ -1,4 +1,7 @@
 import numpy as np
+import dm4bem
+
+
 #Variables of the model:
 nq, nθ = 24, 17 # number of flow-rates branches and of temperaure nodes
 H = 3 # height; in m
@@ -102,3 +105,19 @@ y[6]=y[7]=1
 q = G @ (-A @ θ + b)
 
 print(f"The temperature in the room 1 is : θ6 = {θ[6]:.2f} °C, and the temperature in the room 2 is :θ7 = {θ[7]:.2f} °C")
+
+# Dynamic model
+[As, Bs, Cs, Ds, us]=tc2ss(A,G,b,C,f,y)
+dt_max = min(-2./eig(As))
+dt=0.99*dt_max
+time_simulation=7*24*3600
+n=int(time_simulation/dt)
+list_time=dt*range(n)
+dim_theta=np.size(As,1)
+theta=15*np.ones(dim_theta, n)
+for k in range(n):
+   theta(:,k+1)=(eye(dim_theta)+dt*As))* theta(:,k)+dt*Bs*u(:,k)
+y=Cs*theta+Ds*us
+plot(list_time/3600, y[0])
+xlabel(‘Time (in h)’)
+ylabel(‘Temperature in room 1 (in °C)’)
