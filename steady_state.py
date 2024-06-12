@@ -11,8 +11,8 @@ P_int=1000+200 # power produced in the house by two people and a radiator ; in W
 ho, hi = 25, 8 # outside and inside convection coefficients; in W/m2/K
 lambda_wind, lambda_wall, lambda_insul, lambda_door   = 1.015, 0.22, 0.023, 0.17 #thermal conductivities of the windows, the walls, the insulation layers and the doors; in W/m/K
 alphawall_o, alphawall_i = 0.55, 1 #outside and inside absorption coefficient for the walls
-rho_wall, rho_isol, rho_air = 2300, 16, 1.2 # densities of the walls, the insulation material and the air ; in kg/m^3
-c_wall, c_isol, c_air = 880, 1210, 1000 # specific heats of the walls, the insulation material and the air ; in J/(kg.K)
+rho_wall, rho_insul, rho_air = 2300, 16, 1.2 # densities of the walls, the insulation material and the air ; in kg/m^3
+c_wall, c_insul, c_air = 880, 1210, 1000 # specific heats of the walls, the insulation material and the air ; in J/(kg.K)
  
 
 #Matrix A
